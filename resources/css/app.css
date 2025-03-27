@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === Global Styles === */
+@layer base {
+    :root {
+        --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol', 'Noto Color Emoji';
+    }
+    body {
+        @apply font-sans bg-gray-100 text-gray-800 transition-all duration-300;
+    }
+}
+
+/* === Wrapper Login & Register === */
+.auth-container {
+    @apply flex items-center justify-center min-h-screen px-6;
+}
+
+/* === Box Login & Register === */
+.auth-box {
+    @apply flex flex-wrap max-w-4xl w-full bg-white shadow-xl rounded-xl transition-all duration-500;
+}
+
+/* === Bagian Kiri: Gambar / Ilustrasi === */
+.auth-image {
+    @apply w-full md:w-1/2 hidden md:flex items-center justify-center bg-gradient-to-r from-blue-900 to-green-500 p-8;
+}
+
+/* === Bagian Kanan: Form === */
+.auth-form {
+    @apply w-full md:w-1/2 p-10;
+}
+
+/* === Logo === */
+.auth-logo {
+    @apply flex justify-center mb-4;
+}
+
+/* === Judul Form === */
+.auth-title {
+    @apply text-3xl font-bold text-center text-gray-800 mb-6;
+}
+
+/* === Input Form === */
+.auth-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition-all duration-300;
+}
+
+/* === Tombol Login / Register === */
+.auth-button {
+    @apply w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition-all duration-300 focus:ring-2 focus:ring-green-500 focus:ring-offset-1;
+}
+
+/* === Link ke Halaman Register / Lupa Password === */
+.auth-link {
+    @apply text-blue-500 hover:text-blue-900 transition-all duration-300;
+}
+
+/* === Efek Hover di Box Form === */
+.auth-box:hover {
+    @apply shadow-2xl scale-105 transition-all duration-300;
+}
+
+/* === Efek Animasi Masuk === */
+@layer components {
+    .fade-in {
+        @apply opacity-0 translate-y-4 transition-all duration-500;
+    }
+
+    .fade-in.show {
+        @apply opacity-100 translate-y-0;
+    }
+}
