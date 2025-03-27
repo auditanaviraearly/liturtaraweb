@@ -24,7 +24,7 @@
                 </div>
                 <h2 class="auth-title text-left text-2xl font-semibold mb-6">Login Account</h2>
 
-                <form action="{{ route('dashboardtr') }}" method="GET" class="fade-in">
+                <form action="{{ route('dashboardco') }}" method="GET" class="fade-in">
                     @csrf
                     <div class="mb-4">
                         <label class="block text-gray-600">Email</label>

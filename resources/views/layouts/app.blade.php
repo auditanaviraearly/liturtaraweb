@@ -2,89 +2,49 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <title>{{ $title ?? 'Layanan Case Owner' }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Case Owner</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    @vite(['resources/css/app.css'])
+    @vite('resources/css/app.css') <!-- Make sure Vite is set up correctly -->
+    <!-- Include Font Awesome icons if not already loaded -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body class="bg-gray-100">
-
+<body class="bg-white text-gray-900 antialiased">
     <!-- Navbar -->
     <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center relative">
-    <!-- Logo -->
-    <div class="flex items-center space-x-3">
-        <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
-    </div>
+        <div class="flex items-center space-x-3">
+            <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
+        </div>
 
-    <!-- Menu Navigasi (Left Side) -->
-    <div class="hidden md:flex flex-row md:space-x-4 flex-grow ml-6">
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Home</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">About Us</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Service</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">News</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Our Contact</a>
-    </div>
-
-    <!-- Account Button (Right Side) -->
-    <div class="flex items-center space-x-4">
-    <!-- Token Button -->
-    <a href="{{ route('accountco') }}">
-        <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
-            Token
+        <!-- Tombol Burger Menu (Mobile) -->
+        <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
         </button>
-    </a>
 
-    <!-- Notifikasi Lonceng -->
-    <a href="#">
-        <button class="text-black-700 px-2 py-2 rounded-md hover:text-blue-700">
-            <img src="{{ asset('storage/notifications.png') }}" alt="Notifikasi" class="h-6 w-6">
-        </button>
-    </a>
-
-
-    <!-- Point Button -->
-    <a href="{{ route('accountco') }}">
-        <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
-            Point
-        </button>
-    </a>
-
-    <!-- Account Button -->
-    <a href="{{ route('accountco') }}">
-        <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">
-            Account
-        </button>
-    </a>
-
-    <!-- Tombol Burger Menu (Mobile) -->
-    <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-        <i class="fas fa-bars text-2xl"></i>
-    </button>
-</div>
-
-</nav>
-
-
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-white via-blue-100 to-green-100 py-16 px-8 flex items-center justify-center">
-        <div class="w-1/2">
-            <h1 class="text-3xl font-bold text-blue-900">Welcome to Liturtara</h1>
-            <p class="text-gray-600 mt-2">Enjoy our Case Owner service!</p>
-            <a href="{{ route('serviceco') }}">
-                <button class="mt-4 bg-[#00114F] text-white px-6 py-2 rounded-md hover:bg-[#000C3D]">
-                    Explore Now →
+        <!-- Menu Navigasi -->
+        <div id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-6 absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0 transition-all duration-300">
+            <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Home</a>
+            <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Service</a>
+            <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Contact Us</a>
+            <a href="{{ route('accountco') }}">
+                <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white block text-center md:inline-block">
+                    Account
                 </button>
             </a>
         </div>
-        <div class="w-1/2 flex justify-center">
-            <img src="caseowner.png" alt="Case Owner" class="w-80">
-        </div>
-    </section>
+    </nav>
 
-    <!-- Main Content -->
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-blue-700">Layanan Case Owner</h1>
+            <nav class="space-x-4 text-sm">
+                <a href="#" class="text-gray-700 hover:text-blue-600">Case Owner</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Talent Researcher</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content -->
     <section class="py-12 px-8">
         <h2 class="text-2xl font-bold text-blue-900 text-center">Case Owner Service's</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
@@ -109,7 +69,6 @@
     <!-- Footer -->
     <footer class="bg-[#00114F] text-white py-20 px-16">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            
             <!-- Logo, Alamat & Media Sosial -->
             <div>
                 <img src="{{ asset('storage/liturtarawhite.svg') }}" alt="Liturtara Logo" class="h-12">
@@ -119,13 +78,13 @@
                 <p class="text-sm mt-1">Email: info@liturtara.com</p>
                 <p class="text-sm mt-1">Phone: +62 812-3456-7890</p>
 
-                <!-- Media Sosial    -->
-                <div class="flex space-x-4">
+                <!-- Media Sosial -->
+                <div class="flex space-x-4 mt-3">
                     <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
                     <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-x"></i></a>
                     <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
-                </div>  
+                </div>
             </div>
 
             <!-- Perusahaan -->
@@ -163,12 +122,12 @@
         </div>
     </footer>
 
-    <!-- JavaScript untuk Toggle Menu -->
+    <!-- JavaScript for Mobile Menu Toggle -->
     <script>
         document.getElementById("menu-toggle").addEventListener("click", function() {
-            document.getElementById("menu").classList.toggle("hidden");
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("hidden");
         });
     </script>
-
 </body>
 </html>
