@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        [x-cloak] { display: none !important; }
+        [x-cloak] { display: none !important; }   
     </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gray-100" x-data="{ open: true }" x-init="open = true">

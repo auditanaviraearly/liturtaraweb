@@ -16,7 +16,7 @@
         </div>
         <div class="flex space-x-6 justify-start">
             <a href="#" class="text-gray-700 hover:text-blue-700">Home</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700">Service</a>
+            <a href="{{ route('serviceco') }}" class="text-gray-700 hover:text-blue-700">Service</a>
             <a href="#" class="text-gray-700 hover:text-blue-700">Contact Us</a>
             <a href="{{ route('accountco') }}">
                 <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">
@@ -30,8 +30,8 @@
     <div class="flex flex-1">
         <aside class="w-64 bg-white shadow-md min-h-screen p-6">
             <nav class="space-y-4">
-                <a href="#" class="block font-semibold text-white bg-blue-900 px-4 py-2 rounded-lg">Profile</a>
-                <a href="#" class="block text-gray-700 hover:text-blue-700">Company</a>
+                <a href="{{ route('accountco') }}" class="block font-semibold text-white bg-blue-900 px-4 py-2 rounded-lg">Profile</a>
+                <a href="{{ route('companyform') }}" class="block text-gray-700 hover:text-blue-700">Company</a>
                 <a href="#" class="block text-gray-700 hover:text-blue-700">Project</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -213,3 +213,4 @@
 
 </body>
 </html>
+    

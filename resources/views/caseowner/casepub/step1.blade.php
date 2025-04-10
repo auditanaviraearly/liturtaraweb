@@ -61,7 +61,7 @@
 </div>
 
 <script>
-    document.getElementById('textBtn').addEventListener('click', function () {
+    document.getElementById('textBtn').addEventListener('click', function() {
         window.location.href = "{{ route('casepub.step1') }}";
     });
 </script>

@@ -9,12 +9,12 @@ class PageController extends Controller
     // Menampilkan halaman Syarat & Ketentuan
     public function termsconditions()
     {
-        return view('pages.termsconditions'); // Perbaiki path-nya
+        return view('pages.termsconditions');
     }
 
     // Menampilkan halaman Kebijakan Privasi
     public function privacypolicy()
     {
-        return view('pages.privacypolicy'); // Pastikan ada file ini
+        return view('pages.privacypolicy'); 
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class CaseOwnerController extends Controller
 {
+
     public function showForm()
     {
         return view('caseowner.casepub.form');
@@ -73,7 +74,6 @@ class CaseOwnerController extends Controller
 
     public function step4()
     {
-        // Ambil semua data dari session
         $step1 = session('form_data.step1', []);
         $step2 = session('form_data.step2', []);
         $step3 = session('form_data.step3', []);
@@ -84,43 +84,88 @@ class CaseOwnerController extends Controller
     }
 
     public function postStep4(Request $request)
-{
-    // Validasi form data, termasuk checkbox
-    $request->validate([
-        'early_due_date' => 'required|date',
-        'final_due_date' => 'required|date',
-        'agree_uu' => 'accepted',  // Pastikan checkbox 'Setuju dengan UU' dicentang
-        'agree_sk' => 'accepted',  // Pastikan checkbox 'Setuju dengan SK' dicentang
-    ]);
+    {
+        $request->validate([
+            'early_due_date' => 'required|date',
+            'final_due_date' => 'required|date',
+            'agree_uu'       => 'accepted',
+            'agree_sk'       => 'accepted',
+        ]);
 
-    // Menyimpan data ke dalam session (atau langsung ke database)
-    session(['form_data.step4' => $request->only('early_due_date', 'final_due_date', 'agree_uu', 'agree_sk')]);
+        session(['form_data.step4' => $request->only('early_due_date', 'final_due_date', 'agree_uu', 'agree_sk')]);
 
-    // Redirect ke halaman selesai atau konfirmasi
-    return redirect()->route('casepub.submitFinal');
-}
-
+        return redirect()->route('casepub.submitFinal');
+    }
 
     public function submitFinal(Request $request)
     {
-        // simpan ke database jika modelnya sudah ada, contoh:
+        $formData = array_merge(
+            session('form_data.step1', []),
+            session('form_data.step2', []),
+            session('form_data.step3', []),
+            session('form_data.step4', [])
+        );
+
+        // Contoh jika ada model:
         // Case::create($formData);
 
-        // Hapus data session
         session()->forget('form_data');
 
         return redirect()->route('home')->with('success', 'Masalah berhasil dikirim!');
     }
-
 
     public function uploadDocument()
     {
         return view('casepub.uploadDocument');
     }
 
+    // ====================== COMPANY PROFILE FORM ======================
 
+    public function showCompanyForm()
+    {
+        return view('caseowner.company.companyform');
+    }
+
+    public function submitForm(Request $request)
+    {
+        $validated = $request->validate([
+            'company_name'             => 'required|string|max:255',
+            'company_description'      => 'required|string',
+            'company_established_date' => 'nullable|date|before_or_equal:today',
+            'company_domicile'         => 'required|string|max:255',
+            'company_email'            => 'required|email',
+            'company_phone'            => 'nullable|string|max:20',
+            'company_website'          => 'nullable|url',
+            'company_sosmed'           => 'required|string|max:255',
+            'company_address'          => 'required|string',
+            'company_logo'             => 'nullable|image|max:2048',
+        ]);
+
+        if ($request->hasFile('company_logo')) {
+            $path = $request->file('company_logo')->store('public/company_logos');
+            $validated['company_logo_path'] = $path;
+        }
+
+        // Simpan ke database jika ada model
+        // Company::create($validated);
+
+        return redirect()->route('companyform')->with('success', 'Data perusahaan berhasil disimpan.');
+    }
+
+    public function showDetail($id)
+{
+    // Ambil data kasus berdasarkan ID
+    // $case = CaseModel::find($id);
+
+    // Cek jika data tidak ditemukan
+    // if (!$case) {
+    //     abort(404);
+    // }
+
+    // // Return view dengan data kasus
+    // return view('caseowner.detail', compact('case'));
 }
 
 
-
-
+    
+}

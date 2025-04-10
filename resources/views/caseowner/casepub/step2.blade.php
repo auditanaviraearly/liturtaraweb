@@ -63,7 +63,7 @@
             <!-- Navigasi -->
             <div class="flex justify-start mt-6 space-x-4">
                 <button type="button" class="prevBtn border border-[#00114F] text-[#00114F] bg-transparent px-6 py-2 rounded-md hover:bg-[#00114F] hover:text-white transition duration-200">
-                ← Prev
+                    ← Prev
                 </button>
                 <button type="button" class="nextBtn bg-[#00114F] text-white px-6 py-2 rounded-md hover:bg-[#00227f] transition duration-200">
                     Next →

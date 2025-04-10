@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,62 +11,62 @@
 
     @vite(['resources/css/app.css'])
 </head>
+
 <body class="bg-gray-100">
 
     <!-- Navbar -->
     <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center relative">
-    <!-- Logo -->
-    <div class="flex items-center space-x-3">
-        <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
-    </div>
+        <!-- Logo -->
+        <div class="flex items-center space-x-3">
+            <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
+        </div>
 
-    <!-- Menu Navigasi (Left Side) -->
-    <div class="hidden md:flex flex-row md:space-x-4 flex-grow ml-6">
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Home</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">About Us</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Service</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">News</a>
-        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Our Contact</a>
-    </div>
+        <!-- Menu Navigasi (Left Side) -->
+        <div class="hidden md:flex flex-row md:space-x-4 flex-grow ml-6">
+            <a href="{{ route('dashboardco') }}" class="text-gray-700 hover:text-blue-700 py-2 px-4">Home</a>
+            <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">About Us</a>
+            <a href="{{ route('serviceco') }}" class="text-gray-700 hover:text-blue-700 py-2 px-4">Service</a>
+            <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">News</a>
+            <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Our Contact</a>
+        </div>
 
-    <!-- Account Button (Right Side) -->
-    <div class="flex items-center space-x-4">
-    <!-- Token Button -->
-    <a href="{{ route('accountco') }}">
-        <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
-            Token
-        </button>
-    </a>
+        <!-- Account Button (Right Side) -->
+        <div class="flex items-center space-x-4">
+            <!-- Token Button -->
+            <a href="{{ route('accountco') }}">
+                <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
+                    00 Token
+                </button>
+            </a>
 
-    <!-- Notifikasi Lonceng -->
-    <a href="#">
-        <button class="text-black-700 px-2 py-2 rounded-md hover:text-blue-700">
-            <img src="{{ asset('storage/notifications.png') }}" alt="Notifikasi" class="h-6 w-6">
-        </button>
-    </a>
+            <!-- Notifikasi Lonceng -->
+            <a href="#">
+                <button class="text-black-700 px-2 py-2 rounded-md hover:text-blue-700">
+                    <img src="{{ asset('storage/notifications.png') }}" alt="Notifikasi" class="h-6 w-6">
+                </button>
+            </a>
 
+            <!-- Point Button -->
+            <a href="{{ route('accountco') }}">
+                <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
+                    100 Point
+                </button>
+            </a>
 
-    <!-- Point Button -->
-    <a href="{{ route('accountco') }}">
-        <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
-            Point
-        </button>
-    </a>
+            <!-- Account Button -->
+            <a href="{{ route('accountco') }}">
+                <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">
+                    Account
+                </button>
+            </a>
 
-    <!-- Account Button -->
-    <a href="{{ route('accountco') }}">
-        <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">
-            Account
-        </button>
-    </a>
+            <!-- Tombol Burger Menu (Mobile) -->
+            <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
 
-    <!-- Tombol Burger Menu (Mobile) -->
-    <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-        <i class="fas fa-bars text-2xl"></i>
-    </button>
-</div>
-
-</nav>
+    </nav>
 
 
     <!-- Hero Section -->
@@ -109,7 +110,7 @@
     <!-- Footer -->
     <footer class="bg-[#00114F] text-white py-20 px-16">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-            
+
             <!-- Logo, Alamat & Media Sosial -->
             <div>
                 <img src="{{ asset('storage/liturtarawhite.svg') }}" alt="Liturtara Logo" class="h-12">
@@ -125,7 +126,7 @@
                     <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-x"></i></a>
                     <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
-                </div>  
+                </div>
             </div>
 
             <!-- Perusahaan -->
@@ -171,4 +172,5 @@
     </script>
 
 </body>
+
 </html>

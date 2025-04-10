@@ -19,8 +19,8 @@
 
             <button type="button" id="documentBtn"
                 class="prevBtn border border-[#00114F] text-[#00114F] bg-transparent px-6 py-2 rounded-md hover:bg-[#00114F] hover:text-white transition duration-200">
-                    Document
-                </button>
+                Document
+            </button>
         </div>
 
         <!-- Form 5W1H -->

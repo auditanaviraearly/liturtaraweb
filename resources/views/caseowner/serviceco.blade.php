@@ -12,39 +12,119 @@
 
   <!-- Navbar -->
   <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center relative">
+    <!-- Logo -->
     <div class="flex items-center space-x-3">
-      <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
+        <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
     </div>
 
-    <!-- Burger Menu (Mobile) -->
+    <!-- Menu Navigasi (Left Side) -->
+    <div class="hidden md:flex flex-row md:space-x-4 flex-grow ml-6">
+        <a href="{{ route('dashboardco') }}" class="text-gray-700 hover:text-blue-700 py-2 px-4">Home</a>
+        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">About Us</a>
+        <a href="{{ route('serviceco') }}" class="text-gray-700 hover:text-blue-700 py-2 px-4">Service</a>
+        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">News</a>
+        <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Our Contact</a>
+    </div>
+
+    <!-- Account Button (Right Side) -->
+    <div class="flex items-center space-x-4">
+    <!-- Token Button -->
+    <a href="{{ route('accountco') }}">
+        <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
+            00 Token
+        </button>
+    </a>
+
+<!-- Notifikasi Lonceng -->
+<a href="#" id="notifButton">
+  <button class="text-black-700 px-2 py-2 rounded-md hover:text-blue-700">
+    <i class="fas fa-bell h-6 w-6"></i>
+  </button>
+</a>
+
+<!-- Popup Notifikasi -->
+<div id="notifOverlay" class="hidden fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40 flex items-start justify-center">
+  <div class="bg-white rounded-lg shadow-xl w-80 relative z-50">
+    <div class="p-4 border-b font-semibold text-gray-700 flex justify-between items-center">
+      Notification
+      <button id="closeNotif" class="text-gray-500 hover:text-red-600 text-xl font-bold">&times;</button>
+    </div>
+    <ul class="max-h-64 overflow-y-auto">
+      <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
+        Case data is incomplete
+        <span class="block text-xs text-gray-400" data-time="2025-05-05T12:00:00Z"></span> <!-- Waktu -->
+      </li>
+      <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
+        A solution has been provided
+        <span class="block text-xs text-gray-400" data-time="2025-05-04T09:30:00Z"></span>
+      </li>
+      <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
+        Case has been taken over
+        <span class="block text-xs text-gray-400" data-time="2025-05-02T15:00:00Z"></span>
+      </li>
+      <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
+        Case has been taken over
+        <span class="block text-xs text-gray-400" data-time="2023-05-06T12:00:00Z"></span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Fungsi untuk menghitung selisih waktu
+  function timeAgo(date) {
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const years = Math.floor(days / 365);
+
+    if (years > 0) return `${years} year${years > 1 ? 's' : ''} ago`;
+    if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+    if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+    return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+  }
+
+  // Menghitung dan menampilkan waktu relatif di elemen-elemen yang sesuai
+  document.querySelectorAll('[data-time]').forEach(function(element) {
+    const date = new Date(element.getAttribute('data-time'));
+    element.textContent = timeAgo(date);
+  });
+
+  // Event listener untuk membuka dan menutup overlay notifikasi
+  document.getElementById('notifButton').addEventListener('click', function() {
+    document.getElementById('notifOverlay').classList.toggle('hidden'); // Toggle visibility
+  });
+
+  document.getElementById('closeNotif').addEventListener('click', function() {
+    document.getElementById('notifOverlay').classList.add('hidden'); // Hide the overlay
+  });
+</script>
+
+    <!-- Point Button -->
+    <a href="{{ route('accountco') }}">
+        <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
+            100 Point
+        </button>
+    </a>
+
+    <!-- Account Button -->
+    <a href="{{ route('accountco') }}">
+        <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">
+            Account
+        </button>
+    </a>
+
+    <!-- Tombol Burger Menu (Mobile) -->
     <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-      <i class="fas fa-bars text-2xl"></i>
+        <i class="fas fa-bars text-2xl"></i>
     </button>
+</div>
 
-    <!-- Navigation Menu -->
-    <div id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-6 absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0 transition-all duration-300">
-      <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Home</a>
+</nav>
 
-      <!-- Dropdown Service -->
-      <div class="relative">
-        <button id="dropdownButton" class="text-gray-700 hover:text-blue-700 block py-2 px-4 flex items-center">
-          Service <i class="fas fa-chevron-down ml-2"></i>
-        </button>
-        <div id="dropdownMenu" class="absolute left-0 mt-2 w-48 bg-white shadow-md rounded-md hidden z-50">
-          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100">Case Owner</a>
-          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-blue-100">Talent Researcher</a>
-        </div>
-      </div>
-
-      <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Contact Us</a>
-      <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">About</a>
-      <a href="{{ route('accountco') }}">
-        <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white block text-center md:inline-block">
-          Account
-        </button>
-      </a>
-    </div>
-  </nav>
 
   <!-- Toggle Menu Script -->
   <script>
@@ -101,12 +181,12 @@
     <!-- Sidebar -->
     <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md">
       <ul class="space-y-2">
-        <li class="bg-blue-700 text-white p-2 rounded-md">Masalah Terkirim</li>
-        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Disetujui</li>
-        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Dalam Proses</li>
-        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Tinjauan</li>
-        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Selesai</li>
-        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Ditolak</li>
+        <li class="bg-blue-700 text-white p-2 rounded-md">Issue Sent</li>
+        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Issue Approved</li>
+        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Issue In Process</li>
+        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Issue Reviewed</li>
+        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Issue Resolved</li>
+        <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Issue Rejected</li>
       </ul>
     </aside>
 
@@ -115,9 +195,9 @@
       <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"></div>
 
       <div class="flex justify-between items-center bg-white shadow-md p-4 mt-6">
-        <button id="prevPage" class="text-blue-700 font-semibold px-4 py-2">← Kembali</button>
-        <span id="pageNumber" class="text-gray-700">Halaman 1 dari X</span>
-        <button id="nextPage" class="text-blue-700 font-semibold px-4 py-2">Lanjut →</button>
+        <button id="prevPage" class="text-blue-700 font-semibold px-4 py-2">← Back</button>
+        <span id="pageNumber" class="text-gray-700">Page 1 dari X</span>
+        <button id="nextPage" class="text-blue-700 font-semibold px-4 py-2">Next →</button>
       </div>
     </div>
   </div>
@@ -211,7 +291,7 @@
             } text-white">${card.status}</span>
 
             <div class="flex flex-col justify-center items-start mt-6 mb-10">
-              <h2 class="text-lg font-bold text-blue-900">Case ${card.id}</h2>
+              <h2 class="text-lg font-bold text-blue-900">Issue ${card.id}</h2>
               <p class="text-gray-600 text-sm mt-1">Category: ??</p>
               <p class="text-gray-500 text-xs mt-1">User - ${card.id} Oktober 2024</p>
             </div>
@@ -219,14 +299,19 @@
             <div class="absolute bottom-2 left-2 bg-gray-300 bg-opacity-50 text-gray-700 text-xs px-2 py-1 rounded">
               29 April 2025
             </div>
-            <button class="absolute bottom-2 right-2 bg-blue-700 text-white text-sm font-semibold px-3 py-1 rounded hover:bg-blue-800 transition">
-              View →
-            </button>
+            
+            <a href="{{ route('detail', ['id']) }}">
+                <button class="absolute bottom-2 right-2 bg-blue-700 text-white text-sm font-semibold px-3 py-1 rounded hover:bg-blue-800 transition">
+                    View →
+                </button>
+            </a>
+
+
           </div>
         `;
       });
 
-      pageInfo.textContent = `Halaman ${totalPages === 0 ? 0 : currentPage} dari ${totalPages}`;
+      pageInfo.textContent = `Page ${totalPages === 0 ? 0 : currentPage} to ${totalPages}`;
       prevPageBtn.disabled = currentPage === 1;
       nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
     }

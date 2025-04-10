@@ -6,8 +6,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseOwnerController;
 
 Route::get('/', function () {
-    // return view('caseowner.casepub.form');
-    return view('caseowner.casepub.detail');
+    return view('caseowner.detailSL');
+    // return view('caseowner.casepub.detail');
 });
 
 
@@ -45,28 +45,59 @@ Route::get('/accountco', function () {
     return view('caseowner.accountco');
 })->name('accountco');
 
+Route::get('/company', function () {
+    return view('caseowner.companyform');
+})->name('company');
+
 Route::get('/serviceco', function () {
     return view('caseowner.serviceco');
 })->name('serviceco');
+
+Route::get('/detail', function () {
+    return view('caseowner.detail');
+})->name('detail');
+
+Route::get('/detail2', function () {
+    return view('caseowner.detail2');
+})->name('detail2');
+
+Route::get('/detailSL', function () {
+    return view('caseowner.detailSL');
+})->name('detailSL');
+
 
 // **CASE PUBLICATION CO**
 Route::get('/caseowner/casepub/form', [CaseOwnerController::class, 'showForm'])->name('caseowner.casepub.form');
 Route::get('/caseowner/casepub/uploadDocument', [CaseOwnerController::class, 'uploadDocument'])->name('caseowner.casepub.uploadDocument');
 
+Route::get('/caseowner/casepub/step1', [CaseOwnerController::class, 'step1'])->name('casepub.step1');
+Route::post('/caseowner/casepub/step1', [CaseOwnerController::class, 'postStep1'])->name('casepub.postStep1');
 
-Route::get('/step1', [CaseOwnerController::class, 'step1'])->name('casepub.step1');
-Route::post('/step1', [CaseOwnerController::class, 'postStep1'])->name('casepub.postStep1');
+Route::get('/caseowner/casepub/step2', [CaseOwnerController::class, 'step2'])->name('casepub.step2');
+Route::post('/caseowner/casepub/step2', [CaseOwnerController::class, 'postStep2'])->name('casepub.postStep2');
 
-Route::get('/step2', [CaseOwnerController::class, 'step2'])->name('casepub.step2');
-Route::post('/step2', [CaseOwnerController::class, 'postStep2'])->name('casepub.postStep2');
+Route::get('/caseowner/casepub/step3', [CaseOwnerController::class, 'step3'])->name('casepub.step3');
+Route::post('/caseowner/casepub/step3', [CaseOwnerController::class, 'postStep3'])->name('casepub.postStep3');
 
-Route::get('/step3', [CaseOwnerController::class, 'step3'])->name('casepub.step3');
-Route::post('/step3', [CaseOwnerController::class, 'postStep3'])->name('casepub.postStep3');
+Route::get('/caseowner/casepub/step4', [CaseOwnerController::class, 'step4'])->name('casepub.step4');
+Route::post('/caseowner/casepub/step4', [CaseOwnerController::class, 'postStep4'])->name('casepub.postStep4');
 
-Route::get('/step4', [CaseOwnerController::class, 'step4'])->name('casepub.step4');
-Route::post('/step4', [CaseOwnerController::class, 'postStep4'])->name('casepub.postStep4');
+Route::post('/caseowner/casepub/submit_case', [CaseOwnerController::class, 'submitCase'])->name('   submit_case');
 
-Route::post('/submit_case', [CaseOwnerController::class, 'submitCase'])->name('submit_case');
+
+// ROUTE COMPANY PROFILE
+Route::get('/companyform', [CaseOwnerController::class, 'showCompanyForm'])->name('companyform');
+
+Route::get('/caseowner/company/step1', [CaseOwnerController::class, 'step1'])->name('company.step1');
+Route::post('/caseowner/company/step1', [CaseOwnerController::class, 'postStep1'])->name('company.postStep1');
+
+Route::get('/caseowner/company/step2', [CaseOwnerController::class, 'step2'])->name('company.step2');
+Route::post('/caseowner/company/step2', [CaseOwnerController::class, 'postStep2'])->name('company.postStep2');
+
+Route::post('/caseowner/company/submit', [CaseOwnerController::class, 'submitCompany'])->name('company.submit');
+
+
+
 
 
 // **DASHBOARD TR(Setelah login berhasil)**
