@@ -35,6 +35,20 @@
                         <input type="password" name="password" class="auth-input" required>
                     </div>
                     <button type="submit" class="auth-button">Login</button>
+                    
+                    <div class="w-full flex justify-center mt-6">
+                        <span class="mt-4 text-gray-600">or</span>
+                    </div>
+
+                    <div class="w-full flex justify-center mt-4">
+                        <button type="button" 
+                            onclick="window.location.href='/auth/google'" 
+                            class="auth-button-google mt-4 flex items-center justify-center gap-3">
+                            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" 
+                                alt="Google Logo" class="h-5 w-5">
+                            <span>Login with Google</span>
+                        </button>
+                    </div>
                 </form>
 
                 <p class="text-center mt-4 text-gray-600">

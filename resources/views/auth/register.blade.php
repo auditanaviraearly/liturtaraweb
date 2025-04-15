@@ -13,7 +13,8 @@
     <div class="auth-box">
         <!-- Bagian Kiri: Gambar -->
         <div class="auth-image">
-            <img src="{{ asset('images/welcome.svg') }}" alt="Welcome Image" class="w-3/4">
+            <img src="{{ asset('storage/loginimg.png') }}" alt="Welcome Image" 
+            class="w-3/4" style="transform: scale(2.0) translateY(50px);">
         </div>
 
         <!-- Bagian Kanan: Form -->

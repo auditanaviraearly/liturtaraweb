@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // **AUTH ROUTES (LOGIN & REGISTER)**
@@ -24,6 +24,14 @@ Route::get('/forgotpass', [AuthController::class, 'showForgotPass'])->name('forg
 Route::get('/newpass', [AuthController::class, 'showNewPass'])->name('newpass');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/registerconfirm',[AuthController::class, 'showRegisterConfirm'])->name('registerconfirm');
+
+Route::get('/resetpassconfirm',[AuthController::class, 'showResetPassConfirm'])->name('resetpassconfirm');
+
+Route::get('/resetpassconfirm2',[AuthController::class, 'showResetpassConfirm2'])->name('resetpassconfirm');
+
+
 
 // **DASHBOARD CO(Setelah login berhasil)**
 Route::get('/dashboardco', function () {
