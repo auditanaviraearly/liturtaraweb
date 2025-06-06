@@ -64,7 +64,7 @@
                     </a>
                 </label>
             </div>
-    
+
             <!-- Tombol Navigasi -->
             <div class="flex justify-start mt-6 space-x-4">
                 <button type="button"
@@ -81,54 +81,48 @@
 </div>
 
 <!-- Popup Overlay Terms & Privacy -->
-<div id="termsOverlay"
-    class="hidden fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
-    <div class="bg-white w-3/4 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
-        <button id="closeTermsOverlay"
-            class="absolute top-2 right-3 text-gray-500 hover:text-red-600 text-2xl">&times;</button>
-        <h2 class="text-xl font-bold mb-4 text-[#00114F]">Terms and Conditions & Privacy Policy</h2>
-        <div class="overflow-y-auto max-h-64 space-y-4 text-sm text-gray-600">
+<div id="termsOverlay" class="hidden fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <!-- Modal box -->
+    <div class="bg-white w-full max-w-3xl max-h-[90vh] p-6 rounded-lg shadow-lg relative overflow-hidden">
 
-            <p>
-                <strong>Terms and Conditions:</strong> These terms govern the use of our services and outline the legal agreements between the service provider and the user.
-                By accessing and using our platform, you acknowledge and accept the terms and conditions described herein.
-                This includes but is not limited to the acceptable use of the platform, limitations of liability, user responsibilities, and dispute resolution mechanisms.
-                Violation of these terms may result in suspension or termination of access to services.
-            </p>
+        <!-- Close button -->
+        <button id="closeTermsOverlay" class="absolute top-2 right-3 text-gray-500 hover:text-red-600 text-2xl">
+            &times;
+        </button>
 
-            <p>
-                You agree to use the services in compliance with all applicable local, state, national, and international laws and regulations.
-                You are solely responsible for the activity that occurs on your account, and you must keep your account password secure.
-                The service provider is not liable for any loss or damage arising from your failure to comply with these obligations.
-            </p>
+        <!-- Content container -->
+        <div class="overflow-y-auto max-h-[80vh] pr-2 space-y-6">
+            <!-- Terms and Conditions -->
+            <div>
+                <h2 class="text-xl font-bold mb-4 text-[#00114F]">Terms and Conditions</h2>
+                <div class="space-y-4 text-sm text-gray-700 text-justify">
+                    <p><strong>Acceptance of Terms:</strong> By accessing and using this website, you agree to be bound by the Terms and Conditions set forth herein. If you do not agree with any part of these terms, please do not use our website.</p>
+                    <p><strong>Changes to Terms:</strong> We reserve the right to modify these Terms and Conditions at any time without prior notice. Changes will take effect immediately upon being posted on the website. Your continued use of the website after such changes constitutes your acceptance of the revised terms.</p>
+                    <p><strong>User Obligations:</strong> You agree to use this website solely for lawful purposes and in accordance with applicable laws and regulations. You are prohibited from uploading or distributing content that infringes on copyright, is obscene, or violates the privacy of others.</p>
+                    <p><strong>Intellectual Property Rights:</strong> All content on this website, including but not limited to text, images, logos, and software, is owned by us or our licensors and is protected under applicable copyright laws.</p>
+                    <p><strong>Limitation of Liability:</strong> We are not liable for any loss or damage arising from the use of, or inability to use, this website, including but not limited to errors or omissions in the content.</p>
+                    <p><strong>Links to Third-Party Sites:</strong> Our website may contain links to third-party websites that are not owned or controlled by us. We are not responsible for the content or privacy practices of those third-party sites.</p>
+                    <p><strong>Governing Law:</strong> These Terms and Conditions shall be governed by and construed in accordance with the laws of Indonesia.</p>
+                </div>
+            </div>
 
-            <p>
-                <strong>Privacy Policy:</strong> Our privacy policy outlines how we collect, use, store, and protect your personal information.
-                We are committed to safeguarding your privacy and ensuring that your data is handled securely and responsibly.
-                When you use our services, we may collect information such as your name, email address, IP address, and usage data.
-                This information is used to enhance your experience, improve service quality, and ensure the functionality of the platform.
-            </p>
-
-            <p>
-                We implement a variety of security measures to maintain the safety of your personal information.
-                Your data is protected through encryption protocols and access restrictions to prevent unauthorized access or disclosure.
-                However, please be aware that while we strive to protect your personal information, no method of transmission over the Internet,
-                or method of electronic storage, is 100% secure, and we cannot guarantee absolute security.
-            </p>
-
-            <p>
-                By agreeing to our Terms and Conditions and Privacy Policy, you consent to the collection and use of your information as described.
-                If there are any changes to this policy, you will be notified accordingly. Your continued use of the platform following the posting
-                of changes constitutes your acceptance of those changes.
-            </p>
-
-            <p>
-                If you have any questions or concerns regarding these Terms and Conditions or our Privacy Policy, please feel free to contact our
-                support team. Your trust and security are important to us, and we are committed to ensuring a safe and secure experience.
-            </p>
+            <!-- Privacy Policy -->
+            <div>
+                <h2 class="text-xl font-bold mb-4 text-[#00114F]">Privacy Policy</h2>
+                <div class="space-y-4 text-sm text-gray-700 text-justify">
+                    <p><strong>Information Collection:</strong> We collect personal information that you voluntarily provide during registration, such as your name, email address, and phone number. In addition, we may collect non-personal information such as website usage data through cookies.</p>
+                    <p><strong>Use of Information:</strong> The information we collect is used to: process registration and manage your account; improve our website services and content; send you relevant information or promotional materials.</p>
+                    <p><strong>Information Protection:</strong> We are committed to protecting your personal information by implementing reasonable security measures to prevent unauthorized access, use, or disclosure.</p>
+                    <p><strong>Information Sharing:</strong> We do not sell, trade, or rent your personal information to third parties without your consent, except as required by law.</p>
+                    <p><strong>Cookies:</strong> Our website uses cookies to enhance the user experience. You can configure your browser to refuse cookies, but this may affect the functionality of the website.</p>
+                    <p><strong>Changes to the Privacy Policy:</strong> We may update this Privacy Policy from time to time. Changes will be posted on this page, and your continued use of the website after such changes constitutes your acceptance of the updated policy.</p>
+                    <p><strong>Contact:</strong> If you have any questions or concerns regarding this Privacy Policy, please contact us via email at <a href="mailto:admin@liturtara.com" class="text-blue-600 hover:underline">admin@liturtara.com</a>.</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- Popup Overlay Personal Data Protection -->
@@ -137,12 +131,32 @@
     <div class="bg-white w-3/4 md:w-1/2 lg:w-1/3 p-6 rounded-lg shadow-lg relative">
         <button id="closePersonalDataOverlay"
             class="absolute top-2 right-3 text-gray-500 hover:text-red-600 text-2xl">&times;</button>
-        <h2 class="text-xl font-bold mb-4 text-[#00114F]">Personal Data Protection Law</h2>
-        <div class="overflow-y-auto max-h-64 space-y-4 text-sm text-gray-600">
-            <p>The Personal Data Protection Law ensures that your personal data is handled with strict confidentiality...</p>
+        <h2 class="text-xl font-bold mb-4 text-[#00114F]">Personal Data Protection Consent</h2>
+        <div class="overflow-y-auto max-h-64 space-y-4 text-sm text-gray-600 text-justify">
+            <p>By registering and using liturtara.com, I acknowledge that I have read, understood, and agreed to the Privacy Policy and applicable Terms and Conditions, including the provisions of Law No. 27 of 2022 on Personal Data Protection (PDP Law).</p>
+
+            <p>As a data subject, I understand that I have the following rights under the PDP Law, including but not limited to:</p>
+            <ul class="list-disc list-inside ml-4">
+                <li><strong>Right to Information:</strong> I have the right to know the identity, legal basis, and purpose of data collection and processing.</li>
+                <li><strong>Right to Access and Correction:</strong> I have the right to access and update the personal data I have provided.</li>
+                <li><strong>Right to Erasure and Withdrawal of Consent:</strong> I have the right to terminate processing, delete, and withdraw my consent regarding the use of my personal data in accordance with applicable laws.</li>
+                <li><strong>Right to Data Protection:</strong> I understand that my data will be processed securely and confidentially in compliance with regulations.</li>
+                <li><strong>Right to Compensation:</strong> I have the right to claim compensation if my personal data is misused or unlawfully processed.</li>
+            </ul>
+
+            <p class="font-semibold">Consent Statement</p>
+            <p>Hereby, I give explicit consent to liturtara.com to:</p>
+            <ul class="list-disc list-inside ml-4">
+                <li>Collect, store, process, and use my personal data in accordance with the applicable privacy policy.</li>
+                <li>Use my data for service delivery, administration, and site development purposes.</li>
+                <li>Share my personal data with third parties collaborating with liturtara.com within the scope permitted by law.</li>
+            </ul>
+
+            <p>I understand that I may withdraw this consent at any time by submitting a formal request via the contact information provided in the liturtara.com Privacy Policy.</p>
         </div>
     </div>
 </div>
+
 
 <!-- JavaScript -->
 <script>

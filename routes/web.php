@@ -6,9 +6,32 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseOwnerController;
 
 Route::get('/', function () {
+    // return view('talent.accounttr.accounttr');
     return view('caseowner.detailSL');
+    // return view('caseowner.draft');
     // return view('caseowner.casepub.detail');
 });
+
+Route::get('/tkntopup', function () {
+    return view('tkntopup');
+})->name('tkntopup');
+
+Route::get('/payment', function () {
+    return view('payment');
+})->name('payment');
+
+Route::match(['get', 'post'], '/accpayment', function () {
+    return view('accpayment');
+})->name('accpayment');
+
+
+Route::match(['get', 'post'], '/collectdone', function () {
+    return view('collectdone');
+})->name('collectdone');
+   
+Route::match(['get', 'post'], '/collsurveydone', function () {
+    return view('collsurveydone');
+})->name('collsurveydone');
 
 
 // **AUTH ROUTES (LOGIN & REGISTER)**
@@ -65,6 +88,15 @@ Route::get('/detailSL', function () {
     return view('caseowner.detailSL');
 })->name('detailSL');
 
+Route::get('/projectreport', function () {
+    return view('caseowner.projectreport');
+})->name('projectreport');
+
+Route::get('/draft', function () {
+    return view('caseowner.draft');
+})->name('draft');
+
+
 
 // **CASE PUBLICATION CO**
 Route::get('/caseowner/casepub/form', [CaseOwnerController::class, 'showForm'])->name('caseowner.casepub.form');
@@ -108,3 +140,16 @@ Route::get('/dashboardtr', function () {
 Route::get('/servicetr', function () {
     return view('talent.servicetr');
 })->name('servicetr');
+
+
+Route::get('/detailtr', function () {
+    return view('talent.detailtr');
+})->name('detailtr');
+
+Route::get('/accounttr', function () {
+    return view('talent.accounttr.accounttr');
+})->name('accounttr');
+
+Route::get('/problem', function () {
+    return view('talent.problem');
+})->name('problem');

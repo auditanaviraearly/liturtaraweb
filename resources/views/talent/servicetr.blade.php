@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,202 +8,568 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body class="bg-gray-100 min-h-screen flex flex-col">
 
-<!-- Navbar -->
-<nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center relative">
-        <div class="flex items-center space-x-3">
-            <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
-        </div>
-
-        <!-- Tombol Burger Menu (Mobile) -->
-        <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-            <i class="fas fa-bars text-2xl"></i>
-        </button>
-
-        <!-- Menu Navigasi -->
-        <div id="menu" class="hidden md:flex flex-col md:flex-row md:space-x-6 absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0 transition-all duration-300">
-            <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Home</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Service</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">Contact Us</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 block py-2 px-4">About</a>
-            <a href="{{ route('accountco') }}">
-                <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white block text-center md:inline-block">
-                    Account
-                </button>
-            </a>
-        </div>
-    </nav>
-
-    <!-- JavaScript untuk Toggle Menu -->
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            let menu = document.getElementById("menu");
-            if (menu.classList.contains("hidden")) {
-                menu.classList.remove("hidden");
-                menu.classList.add("flex", "flex-col");
-            } else {
-                menu.classList.add("hidden");
-                menu.classList.remove("flex", "flex-col");
-            }
-        });
-    </script>
+@include('navbartr')
 
     <!-- Hero Section -->
-    <div class="relative w-full h-80 bg-cover bg-center mt-10" style="background-image: url('/storage/bgco1.png');">
-    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-end px-8 pb-6">
-        <div class="text-white">
-            <h1 class="text-3xl font-bold">Layanan Talent Researcher</h1>
-            <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+    <div class="relative w-full h-80 bg-cover bg-center mt-10" style="background-image: url('/storage/gambar2.png');">
+        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-end px-8 pb-6">
+            <div class="text-white">
+                <h1 class="text-3xl font-bold">Layanan Talent Researcher</h1>
+                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+            </div>
         </div>
     </div>
-</div>
 
     <!-- Tab Navigasi -->
-    <div class="flex border-b px-8 mt-4">
-        <a href="serviceco" class="px-4 py-2 text-gray-500">Case Owner</a>
-        <a href="#" class="px-4 py-2 font-semibold border-b-2 border-blue-700">Talent Researcher</a>
+    <div class="flex border-b px-8">
+        <a href="{{ url('servicedtr') }}"
+            class="px-4 py-2 font-semibold border-b-2 {{ Request::is('servicetr') ? 'border-blue-700 text-black' : 'border-transparent text-gray-500' }}">
+            Case List
+        </a>
+        <a href="{{ url('#') }}"
+            class="px-4 py-2 font-semibold border-b-2 {{ Request::is('#') ? 'border-blue-700 text-black' : 'border-transparent text-gray-500' }}">
+            Selection Status
+        </a>
     </div>
 
-    <!-- Upload Section -->
-    <div class="bg-green-500 text-white p-6 rounded-lg mx-8 mt-6 flex justify-between items-center">
-        <p class="text-lg font-semibold">Upload masalah Anda, kami akan memberikan solusi</p>
-        <div class="flex space-x-4">
-            <button class="bg-white text-green-600 px-4 py-2 rounded-md">Unduh Template</button>
-            <button class="bg-blue-700 px-4 py-2 rounded-md">Upload Masalah</button>
-        </div>
-    </div>
 
-    <!-- Content Wrapper -->
-    <div class="flex flex-col md:flex-row px-8 mt-6 gap-6">
-        <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md">
-            <h3 class="font-bold mb-4">Masalah Terkini</h3>
-            <ul class="space-y-2">
-                <li class="bg-blue-700 text-white p-2 rounded-md">Masalah Terkini</li>
-                <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Disetujui</li>
-                <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Dalam Proses</li>
-                <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Tinjauan</li>
-                <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Selesai</li>
-                <li class="p-2 text-gray-700 hover:bg-gray-200 rounded-md">Masalah Ditolak</li>
-            </ul>
-        </aside>
-        
-        <div class="w-full md:w-3/4">
-            <h1 class="text-2xl font-bold text-gray-900">Daftar Masalah</h1>
-            <div id="card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"></div>
-            <div class="flex justify-between items-center bg-white shadow-md p-4 mt-6">
-                <button id="prevPage" class="text-blue-700 font-semibold px-4 py-2">← Kembali</button>
-                <span id="pageNumber" class="text-gray-700">Halaman 1 dari X</span>
-                <button id="nextPage" class="text-blue-700 font-semibold px-4 py-2">Lanjut →</button>
-            </div>
-        </div>
-    </div>
 
-    <!-- Hero Section -->
-        <div class="relative w-full h-64 bg-cover bg-center" 
-            style="background-image: url('/storage/booklibrary.png');">
+    <!-- Content Wrapper Left-->
+
+    <body class="bg-[#F7F9FF] text-[#0B1E5B] min-h-screen">
+        <div class="max-w-[1200px] px-4 sm:px-6 lg:px-8 pt-6 pb-12 ">
+
+            <!-- Search Section -->
+            <section class="relative w-[1200px] h-[250px] bg-cover bg-center" style="background-image: url('/storage/bgtrsearch.png');">
+                <div class="relative w-full h-64 bg-cover bg-centerabsolute inset-0 flex flex-col items-center justify-center px-4">
+                    <h1 class="text-center text-[#0B1E5B] font-semibold text-xl sm:text-2xl mb-6">
+                        Find the ones you need!
+                    </h1>
+                    <form
+                        class="w-full max-w-[600px] relative"
+                        role="search"
+                        aria-label="Search cases">
+                        <input
+                            type="search"
+                            placeholder="Search"
+                            class="w-full rounded-md border border-[#D9E0EC] py-3 pl-4 pr-12 text-[#0B1E5B] placeholder-[#7A8BB3] text-sm focus:outline-none focus:ring-2 focus:ring-[#0B1E5B]"
+                            aria-label="Search input" />
+                        <button
+                            type="submit"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0B1E5B] text-white rounded-md px-3 py-2 text-sm flex items-center space-x-2 hover:bg-[#091a44] focus:outline-none"
+                            aria-label="Search button">
+                            <i class="fas fa-search"></i>
+                            <span>Search</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
         </div>
 
-    <!-- Footer -->
-    <footer class="bg-[#00114F] text-white py-20 px-16">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div>
-                <img src="{{ asset('storage/liturtarawhite.svg') }}" alt="Liturtara Logo" class="h-12">
-                <p class="text-sm mt-3">PT. Literasi Jaya Nusantara</p>
-                <p class="text-sm mt-1">Email: info@liturtara.com</p>
-                <p class="text-sm mt-1">Phone: +62 812-3456-7890</p>
-                <div class="flex space-x-4 mt-3">
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-x"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
-                </div>  
+        <div class="max-w-[1200px] mx-8 px-4 sm:px-6 lg:px-8 pt-6 pb-1">
+            <div class="flex flex-col md:flex-row mt-6 gap-6">
+                <!-- Filter Panel -->
+                <aside class="w-full md:w-1/4 bg-white p-4 rounded-lg shadow-md max-h-[500px] overflow-auto">
+                    <h2 class="text-[#0B1E5B] font-semibold text-sm mb-4">Filter</h2>
+                    <ul class="space-y-4 text-sm text-[#0B1E5B]">
+
+                        <!-- Category -->
+                        <div class="mb-6">
+                            <h3 class="text-[#0B1E5B] font-semibold text-xs mb-3">Category</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <button
+                                    type="button"
+                                    class="text-[#7A8BB3] text-xs font-semibold border border-[#D9E0EC] rounded-md px-3 py-1 hover:border-[#0B1E5B] hover:text-[#0B1E5B] focus:outline-none">
+                                    Category
+                                </button>
+                                <button
+                                    type="button"
+                                    class="text-[#7A8BB3] text-xs font-semibold border border-[#D9E0EC] rounded-md px-3 py-1 hover:border-[#0B1E5B] hover:text-[#0B1E5B] focus:outline-none">
+                                    Category
+                                </button>
+                                <button
+                                    type="button"
+                                    class="text-[#7A8BB3] text-xs font-semibold border border-[#D9E0EC] rounded-md px-3 py-1 hover:border-[#0B1E5B] hover:text-[#0B1E5B] focus:outline-none">
+                                    Category
+                                </button>
+                                <button
+                                    type="button"
+                                    class="text-[#7A8BB3] text-xs font-semibold border border-[#D9E0EC] rounded-md px-3 py-1 hover:border-[#0B1E5B] hover:text-[#0B1E5B] focus:outline-none">
+                                    Category
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Upload Time -->
+                        <li>
+                            <h3 class="text-xs font-semibold mb-2">Upload Time</h3>
+                            <ul class="space-y-1 text-[#7A8BB3]">
+                                <li><label><input type="radio" name="upload-time" class="mr-2">Last 24 hours</label></li>
+                                <li><label><input type="radio" name="upload-time" class="mr-2">Last 7 days</label></li>
+                                <li><label><input type="radio" name="upload-time" class="mr-2">Last 30 days</label></li>
+                            </ul>
+                        </li>
+
+                        <!-- Sort -->
+                        <li>
+                            <h3 class="text-xs font-semibold mb-2">Sort</h3>
+                            <ul class="space-y-1 text-[#7A8BB3]">
+                                <li><label><input type="radio" name="sort" class="mr-2">A to Z</label></li>
+                                <li><label><input type="radio" name="sort" class="mr-2">Z to A</label></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <button
+                        type="button"
+                        class="mt-6 w-full bg-[#0B1E5B] text-white text-xs font-semibold py-2 rounded-md hover:bg-[#091a44]">
+                        Next
+                    </button>
+                </aside>
+
+
+                <!-- Cards Grid -->
+                <main class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Card Template Start -->
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-2 py-1">Available</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+                    <!-- Card Template End -->
+
+                    <!-- Duplicate cards with same content but some with "Unavailable" -->
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#1E293B] text-white text-xs font-semibold rounded-md px-2 py-1">Unavailable</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-2 py-1">Available</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-2 py-1">Available</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#1E293B] text-white text-xs font-semibold rounded-md px-2 py-1">Unavailable</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-2 py-1">Available</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#1E293B] text-white text-xs font-semibold rounded-md px-2 py-1">Unavailable</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-2 py-1">Available</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+
+                    <article
+                        class="bg-white rounded-lg shadow-md p-5 flex flex-col justify-between"
+                        aria-label="Case card">
+                        <div>
+                            <div class="flex justify-between items-start mb-3">
+                                <h3 class="text-[#0B1E5B] font-semibold text-sm leading-tight max-w-[70%]">
+                                    Lorem ipsum dolor sit amet Lorem
+                                </h3>
+                                <span
+                                    class="bg-[#1E293B] text-white text-xs font-semibold rounded-md px-2 py-1">Unavailable</span>
+                            </div>
+                            <p class="text-[#7A8BB3] text-xs mb-3 leading-snug">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                                eiusmod tempor
+                            </p>
+                            <div class="flex flex-wrap gap-2 text-[#7A8BB3] text-xs mb-3">
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Doe</span>
+                                </div>
+                                <div class="flex items-center space-x-1">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>2 October 2018</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 text-xs text-[#7A8BB3]">
+                                <i class="fas fa-clock"></i>
+                                <span>15 hrs 20m</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex space-x-3">
+                            <button
+                                type="button"
+                                class="border border-[#0B1E5B] text-[#0B1E5B] text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#0B1E5B] hover:text-white focus:outline-none">
+                                Take
+                            </button>
+                            <button
+                                type="button"
+                                class="bg-[#0B1E5B] text-white text-xs font-semibold rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                                View
+                            </button>
+                        </div>
+                    </article>
+                </main>
             </div>
-            <div>
-                <h3 class="font-semibold text-lg mb-3">Company</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white">Home Page</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">News</a></li>
-                </ul>
+
+            <!-- Pagination -->
+            <div class="mt-10 flex justify-center items-center space-x-4 text-xs text-[#7A8BB3] font-semibold">
+                <button
+                    type="button"
+                    class="bg-[#0B1E5B] text-white rounded-md px-3 py-1 hover:bg-[#091a44] focus:outline-none">
+                    Next →
+                </button>
+                <div>
+                    Page <span class="text-[#0B1E5B]">1</span> of <span>2</span>
+                </div>
             </div>
-            <div>
-                <h3 class="font-semibold text-lg mb-3">Service</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white">Case Owner</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Talent Researcher</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="font-semibold text-lg mb-3">Help</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white">Contact Us</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">FAQ</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Terms and Condition</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
-                </ul>
+
+        </div>
+
+        <!-- Hero Section -->
+        <div class="relative w-full h-64 bg-cover bg-center" style="background-image: url('/storage/booklibrary.png');">
+            <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-end px-8 pb-6">
+                <div class="text-white">
+                    <h1 class="text-3xl font-bold">
+                        The future of your business, <br>
+                        starts with Liturtara
+                    </h1>
+                    <p class="text-sm mt-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing
+                    </p>
+                    <a href="{{ route('servicetr') }}">
+                        <button class="mt-4 bg-[#1fc92b] text-white px-6 py-2 rounded-md hover:bg-[#4aea56]">
+                            Contact Now →
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="text-center text-gray-400 text-sm mt-12">
-            &copy; 2025 Liturtara. All Rights Reserved.
-        </div>
-    </footer>
 
-    <script>
-        document.getElementById("menu-toggle").addEventListener("click", function() {
-            document.getElementById("menu").classList.toggle("hidden");
-        });
+       @include('bottom')
+    </body>
 
-        const cardContainer = document.getElementById("card-container");
-        const prevButton = document.getElementById("prevPage");
-        const nextButton = document.getElementById("nextPage");
-        const pageInfo = document.getElementById("pageNumber");
-
-        const totalCards = 30;
-        const cardsPerPage = 6;
-        let currentPage = 1;
-        const totalPages = Math.ceil(totalCards / cardsPerPage); // Total halaman
-
-        function generateCards() {
-            cardContainer.innerHTML = "";
-            let start = (currentPage - 1) * cardsPerPage;
-            let end = start + cardsPerPage;
-            for (let i = start; i < end && i < totalCards; i++) {
-                let card = `<div class="bg-white rounded-lg shadow-md p-4 relative">
-                    <span class="absolute top-2 right-2 bg-blue-700 text-white px-2 py-1 text-xs rounded">Tersedia</span>
-                    <h2 class="text-lg font-bold text-blue-900">Masalah ${i + 1}</h2>
-                    <p class="text-gray-600 text-sm">Kategori: Acak</p>
-                    <p class="text-gray-500 text-xs mt-1">User - ${i + 1} Oktober 2024</p>
-                    <button class="bg-red-700 text-white px-4 py-2 rounded-md mt-2">Hapus X</button>
-                    <button class="bg-blue-700 text-white px-4 py-2 rounded-md mt-2">Lihat →</button>
-                </div>`;
-                cardContainer.innerHTML += card;
-            }
-
-            // Update teks halaman
-            pageInfo.textContent = `Halaman ${currentPage} dari ${totalPages}`;
-
-            // Disable tombol jika di halaman pertama atau terakhir
-            prevButton.disabled = currentPage === 1;
-            nextButton.disabled = currentPage === totalPages;
-        }
-
-        prevButton.addEventListener("click", () => { 
-            if (currentPage > 1) { 
-                currentPage--; 
-                generateCards(); 
-            } 
-        });
-
-        nextButton.addEventListener("click", () => { 
-            if (currentPage < totalPages) { 
-                currentPage++; 
-                generateCards(); 
-            } 
-        });
-
-        generateCards();
-
-    </script>
-</body>
 </html>

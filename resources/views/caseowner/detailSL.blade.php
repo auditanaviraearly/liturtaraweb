@@ -11,117 +11,7 @@
 
 <body class="bg-gradient-to-r from-[#e6f0f9] via-[#f0f9f4] to-[#e9f7d9] flex flex-col min-h-screen">
     <!-- Navbar -->
-    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center relative">
-        <!-- Logo -->
-        <div class="flex items-center space-x-3">
-            <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
-        </div>
-
-        <!-- Menu Navigasi (Left Side) -->
-        <div class="hidden md:flex flex-row md:space-x-4 flex-grow ml-6">
-            <a href="{{ route('dashboardco') }}" class="text-gray-700 hover:text-blue-700 py-2 px-4">Home</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">About Us</a>
-            <a href="{{ route('serviceco') }}" class="text-gray-700 hover:text-blue-700 py-2 px-4">Service</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">News</a>
-            <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Our Contact</a>
-        </div>
-
-        <!-- Account Button (Right Side) -->
-        <div class="flex items-center space-x-4">
-            <!-- Token Button -->
-            <a href="{{ route('accountco') }}">
-                <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
-                    Token
-                </button>
-            </a>
-
-            <!-- Notifikasi Lonceng -->
-            <a href="#">
-                <button id="notifButton" class="text-black-700 px-2 py-2 rounded-md hover:text-blue-700">
-                    <i class="fas fa-bell text-xl"></i> <!-- FontAwesome Bell Icon -->
-                </button>
-            </a>
-
-            <!-- Popup Notifikasi -->
-            <div id="notifOverlay" class="hidden fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40 flex items-start justify-center">
-                <div class="bg-white rounded-lg shadow-xl w-80 relative z-50">
-                    <div class="p-4 border-b font-semibold text-gray-700 flex justify-between items-center">
-                        Notification
-                        <button id="closeNotif" class="text-gray-500 hover:text-red-600 text-xl font-bold">&times;</button>
-                    </div>
-                    <ul class="max-h-64 overflow-y-auto">
-                        <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
-                            Case data is incomplete
-                            <span class="block text-xs text-gray-400" data-time="2025-05-05T12:00:00Z"></span> <!-- Waktu -->
-                        </li>
-                        <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
-                            A solution has been provided
-                            <span class="block text-xs text-gray-400" data-time="2025-05-04T09:30:00Z"></span>
-                        </li>
-                        <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
-                            Case has been taken over
-                            <span class="block text-xs text-gray-400" data-time="2025-05-02T15:00:00Z"></span>
-                        </li>
-                        <li class="p-3 text-sm text-gray-600 border-b hover:bg-gray-100">
-                            Case has been taken over
-                            <span class="block text-xs text-gray-400" data-time="2023-05-06T12:00:00Z"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <script>
-                // Fungsi untuk menghitung selisih waktu
-                function timeAgo(date) {
-                    const now = new Date();
-                    const seconds = Math.floor((now - date) / 1000);
-                    const minutes = Math.floor(seconds / 60);
-                    const hours = Math.floor(minutes / 60);
-                    const days = Math.floor(hours / 24);
-                    const years = Math.floor(days / 365);
-
-                    if (years > 0) return `${years} year${years > 1 ? 's' : ''} ago`;
-                    if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
-                    if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-                    if (minutes > 0) return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
-                    return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
-                }
-
-                document.querySelectorAll('[data-time]').forEach(function(element) {
-                    const date = new Date(element.getAttribute('data-time'));
-                    element.textContent = timeAgo(date);
-                });
-
-                document.getElementById('notifButton').addEventListener('click', function() {
-                    document.getElementById('notifOverlay').classList.toggle('hidden'); // Toggle visibility
-                });
-
-                document.getElementById('closeNotif').addEventListener('click', function() {
-                    document.getElementById('notifOverlay').classList.add('hidden'); // Hide the overlay
-                });
-            </script>
-
-            <!-- Point Button -->
-            <a href="{{ route('accountco') }}">
-                <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
-                    Point
-                </button>
-            </a>
-
-            <!-- Account Button -->
-            <a href="{{ route('accountco') }}">
-                <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">
-                    Account
-                </button>
-            </a>
-
-            <!-- Tombol Burger Menu (Mobile) -->
-            <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-
-    </nav>
+@include('navbar')
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -175,22 +65,6 @@
                         </div>
                     </div>
 
-                    <script>
-                        const button = document.getElementById('dropdownButton');
-                        const menu = document.getElementById('dropdownMenu');
-
-                        button.addEventListener('click', () => {
-                            menu.classList.toggle('opacity-0');
-                            menu.classList.toggle('invisible');
-                        });
-
-                        document.addEventListener('click', (e) => {
-                            if (!button.contains(e.target)) {
-                                menu.classList.add('opacity-0', 'invisible');
-                            }
-                        });
-                    </script>
-
                     <button>
                         <i class="fas fa-search">
                         </i>
@@ -235,16 +109,15 @@
                             </a>
                         </div>
                         <div class="flex gap-2 flex-wrap sm:flex-nowrap">
-                            <button onClick="openReportModal()" class="text-[10px] border border-red-600 text-red-600 rounded px-3 py-1 hover:bg-red-50 transition">
+                            <button id="reportBtn1" class="text-[10px] border border-red-600 text-red-600 rounded px-3 py-1 hover:bg-red-50 transition">
                                 Report
                             </button>
-                            <button class="text-[10px] border border-[#1E293B]/20 text-[#1E293B]/90 bg-white rounded px-3 py-1 hover:bg-[#F4F7FF] transition">
+                            <!-- <button class="text-[10px] border border-[#1E293B]/20 text-[#1E293B]/90 bg-white rounded px-3 py-1 hover:bg-[#F4F7FF] transition">
                                 Draft
-                            </button>
-                            <button class="text-[10px] bg-[#0C1E5B] text-white rounded px-3 py-1 flex items-center gap-1 hover:bg-[#0a1740] transition">
+                            </button> -->
+                            <button id="approveBtn1" class="text-[10px] bg-[#0C1E5B] text-white rounded px-3 py-1 flex items-center gap-1 hover:bg-[#0a1740] transition">
                                 Approve Solution
-                                <i class="fas fa-check">
-                                </i>
+                                <i class="fas fa-check"></i>
                             </button>
                         </div>
                     </div>
@@ -285,17 +158,15 @@
                             </a>
                         </div>
                         <div class="flex gap-2 flex-wrap sm:flex-nowrap">
-                            <button onclick="openReportModal()"
-                                class="text-[10px] border border-red-600 text-red-600 rounded px-3 py-1 hover:bg-red-50 transition">
+                            <button id="reportBtn2" class="text-[10px] border border-red-600 text-red-600 rounded px-3 py-1 hover:bg-red-50 transition">
                                 Report
                             </button>
-                            <button class="text-[10px] border border-[#1E293B]/20 text-[#1E293B]/90 bg-white rounded px-3 py-1 hover:bg-[#F4F7FF] transition">
+                            <!-- <button class="text-[10px] border border-[#1E293B]/20 text-[#1E293B]/90 bg-white rounded px-3 py-1 hover:bg-[#F4F7FF] transition">
                                 Draft
-                            </button>
-                            <button class="text-[10px] bg-[#0C1E5B] text-white rounded px-3 py-1 flex items-center gap-1 hover:bg-[#0a1740] transition">
+                            </button> -->
+                            <button id="approveBtn2" class="text-[10px] bg-[#0C1E5B] text-white rounded px-3 py-1 flex items-center gap-1 hover:bg-[#0a1740] transition">
                                 Approve Solution
-                                <i class="fas fa-check">
-                                </i>
+                                <i class="fas fa-check"></i>
                             </button>
                         </div>
                     </div>
@@ -307,7 +178,7 @@
                                     Sed do eiusmod tempor incididunt
                                 </h2>
                                 <span class="text-[10px] text-[#1E293B]/70 pt-1">
-                                    06 Desember 2025
+                                    06 December 2025
                                 </span>
                             </div>
                             <div class="mt-1 text-[10px] text-[#1E293B]/90 font-normal">
@@ -336,17 +207,15 @@
                             </a>
                         </div>
                         <div class="flex gap-2 flex-wrap sm:flex-nowrap">
-                            <button onclick="openReportModal()"
-                                class="text-[10px] border border-red-600 text-red-600 rounded px-3 py-1 hover:bg-red-50 transition">
+                            <button id="reportBtn3" class="text-[10px] border border-red-600 text-red-600 rounded px-3 py-1 hover:bg-red-50 transition">
                                 Report
                             </button>
-                            <button class="text-[10px] border border-[#1E293B]/20 text-[#1E293B]/90 bg-white rounded px-3 py-1 hover:bg-[#F4F7FF] transition">
+                            <!-- <button class="text-[10px] border border-[#1E293B]/20 text-[#1E293B]/90 bg-white rounded px-3 py-1 hover:bg-[#F4F7FF] transition">
                                 Draft
-                            </button>
-                            <button class="text-[10px] bg-[#0C1E5B] text-white rounded px-3 py-1 flex items-center gap-1 hover:bg-[#0a1740] transition">
+                            </button> -->
+                            <button id="approveBtn3" class="text-[10px] bg-[#0C1E5B] text-white rounded px-3 py-1 flex items-center gap-1 hover:bg-[#0a1740] transition">
                                 Approve Solution
-                                <i class="fas fa-check">
-                                </i>
+                                <i class="fas fa-check"></i>
                             </button>
                         </div>
                     </div>
@@ -354,33 +223,103 @@
             </div>
         </div>
 
-        <script>
-            // Get elements
-            const deleteBtn = document.getElementById('deleteBtn');
-            const confirmationModal = document.getElementById('confirmationModal');
-            const cancelBtn = document.getElementById('cancelBtn');
-            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-
-            // Show the modal when delete button is clicked
-            deleteBtn.addEventListener('click', function() {
-                confirmationModal.classList.remove('hidden');
-            });
-
-            // Hide the modal when cancel button is clicked
-            cancelBtn.addEventListener('click', function() {
-                confirmationModal.classList.add('hidden');
-            });
-
-            // Handle delete action (confirm delete)
-            confirmDeleteBtn.addEventListener('click', function() {
-                // Add the logic to delete the file here (e.g., send a request to the server)
-                alert('File deleted'); // Placeholder for actual delete logic
-                confirmationModal.classList.add('hidden');
-            });
-        </script>
-
-        </section>
+        <!-- Approve Confirmation Modal -->
+        <div id="approveModal" class="hidden fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center z-50">
+            <div class="bg-white w-11/12 max-w-md p-6 rounded-lg shadow-lg relative">
+                <button id="closeApproveModal" class="absolute top-2 right-3 text-gray-500 hover:text-red-600 text-2xl">&times;</button>
+                <h2 class="text-start text-xl font-bold mb-4 text-[#00114F]">Overview Soution</h2>
+                <hr class="border-t border-gray-300 mb-4" />
+                <!-- Solution Draft and Date -->
+                <div class="flex justify-start text-[11px] text-gray-700 mb-4 space-x-4">
+                    <span>
+                        Solution Draft
+                    </span>
+                    <span>
+                        15 Desember 2025
+                    </span>
+                </div>
+                <!-- Content block with icon and text -->
+                <div class="flex space-x-4 mb-4">
+                    <div>
+                        <img alt="Icon showing three horizontal lines representing a document" class="w-12 h-12" height="48" src="https://storage.googleapis.com/a1aa/image/78ae9bd5-eb11-4795-5640-76a8d8ea7cad.jpg" width="48" />
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-[#00184F] font-semibold text-[13px] leading-[1.3] mb-1" style="font-weight: 600;">
+                            Lorem ipsum dolor sit amet
+                        </h3>
+                        <p class="text-[11px] text-gray-700 leading-[1.3]">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                            aliquip ex ea commodo consequat.
+                        </p>
+                        <button class="mt-2 text-[10px] text-[#00184F] border border-[#00184F] rounded px-3 py-1 hover:bg-[#00184F] hover:text-white transition" style="font-weight: 500;">
+                            View Draft
+                        </button>
+                    </div>
+                </div>
+                <hr class="border-t border-gray-300 mb-4" />
+                <p class="text-[11px] text-gray-700 mb-3">
+                    Submitted By
+                </p>
+                <!-- User info block -->
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-4">
+                        <img alt="Photo of a young man with short black hair wearing a white t-shirt, smiling" class="w-12 h-12 rounded-full object-cover" height="48" src="https://storage.googleapis.com/a1aa/image/9be27ccb-bb56-4352-b7c5-69a9404ec191.jpg" width="48" />
+                        <div>
+                            <span class="bg-[#00184F] text-white text-[9px] font-semibold rounded px-2 py-[2px] inline-block mb-1" style="font-weight: 600;">
+                                Beginner Researcher
+                            </span>
+                            <h4 class="text-[#00184F] font-bold text-[15px] leading-[1.2] flex items-center space-x-1" style="font-weight: 700;">
+                                <span>
+                                    Muhammad Patel
+                                </span>
+                                <i aria-label="LinkedIn icon" class="fab fa-linkedin text-[#0A66C2]" title="LinkedIn">
+                                </i>
+                            </h4>
+                            <div class="flex items-center gap-1 mt-1 text-yellow-400 text-[10px]">
+                                <i class="fas fa-star">
+                                </i>
+                                <i class="fas fa-star">
+                                </i>
+                                <i class="fas fa-star">
+                                </i>
+                                <i class="fas fa-star">
+                                </i>
+                                <i class="fas fa-star-half-alt">
+                                </i>
+                                <span class="text-[#1E293B]/50 ml-1">
+                                    (6)
+                                </span>
+                            </div>
+                            <div class="flex items-center text-[11px] text-gray-700 space-x-1">
+                                <i class="fas fa-university">
+                                </i>
+                                <span>
+                                    Haluoleo University
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="text-[#00184F] text-[11px] font-normal hover:underline" href="#" style="font-weight: 400;">
+                        View Profile
+                    </a>
+                </div>
+                <hr class="border-t border-gray-300 mb-4" />
+                <!-- Disclaimer text -->
+                <p class="text-[10px] text-gray-700 mb-4 leading-[1.3]">
+                    By agreeing to this solution, the talent will be assigned to solve the
+                    problem based on the solution presented and notified that the problem will
+                    be handled by this talent.
+                </p>
+                <button id="confirmApprove" class="text-[10px] bg-[#0C1E5B] text-white rounded px-3 py-1 flex items-center gap-x-1 hover:bg-[#0a1740] transition">
+                    Approve Solution
+                    <i class="fas fa-check"></i>
+                </button>
+            </div>
         </div>
+        </div>
+
     </main>
 
     <!-- Modal Report -->
@@ -397,21 +336,38 @@
 
                 <div class="space-y-2">
                     <div class="space-y-2 text-sm text-gray-700">
-                        <p>The solution provided does not match the problem described.</p>
-                        <p>The solution contains inappropriate content.</p>
-                        <p>The solution is spam or promotional content.</p>
+                        <label class="flex items-start gap-2">
+                            <input type="text" name="reportReason" class="text-start" onclick="document.getElementById('otherInput').classList.add('hidden')" />
+                            <span class="text-left">The solution provided does not match the problem described.</span>
+                        </label>
+                        <label class="flex items-start gap-2">
+                            <input type="text" name="reportReason" class="text-start" onclick="document.getElementById('otherInput').classList.add('hidden')" />
+                            <span class="text-left">The solution contains inappropriate content.</span>
+                        </label>
+                        <label class="flex items-start gap-2">
+                            <input type="text" name="reportReason" class="text-start" onclick="document.getElementById('otherInput').classList.add('hidden')" />
+                            <span class="text-left">The solution is spam or promotional content.</span>
+                        </label>
                     </div>
 
-                    <label class="flex items-center gap-2 text-sm text-gray-700">
-                        <input type="checkbox" name="reportReason" value="Other" id="otherReason" class="form-checkbox text-red-600" onclick="toggleOtherInput()">
-                        Other Report
-                    </label>
-                    
+
+                    <!-- Other Report sebagai checkbox -->
+                    <div class="space-y-2 text-sm text-gray-700">
+                        <label class="flex items-center gap-2">
+                            <input type="checkbox" id="otherCheckbox" class="form-checkbox text-red-600" onclick="toggleOtherInputCheckbox()" />
+                            Other Report
+                        </label>
+                        <input type="text" id="otherInput" name="reportReasonOther" placeholder="Please specify..." class="w-full border rounded px-3 py-2 hidden" />
+                    </div>
+                    <!-- Tambahan Textarea Penjelasan -->
+                    <div>
+                        <label for="reportDetails" class="block font-medium text-sm">Additional Explanation (optional)</label>
+                        <textarea id="reportDetails" name="reportDetails" rows="3" placeholder="Explain more details here..."
+                            class="w-full border rounded px-3 py-2 resize-none"></textarea>
+                    </div>
+
                 </div>
 
-                <textarea id="otherInput"
-                    class="hidden w-full p-2 border border-gray-300 rounded-md"
-                    placeholder="Please specify your reason..."></textarea>
 
                 <button onclick="submitReport()"
                     class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 focus:outline-none w-full">
@@ -422,26 +378,27 @@
     </div>
 
     <script>
-        // Open Modal
+        // Report modal functions
         function openReportModal() {
             document.getElementById('reportOverlay').classList.remove('hidden');
         }
 
-        // Close Modal
         function closeReportModal() {
             document.getElementById('reportOverlay').classList.add('hidden');
+            // Reset form
+            document.getElementById('otherInput').classList.add('hidden');
+            document.querySelectorAll('input[name="reportReason"]').forEach(input => input.checked = false);
+            document.getElementById('otherInput').value = '';
         }
 
-        // Toggle 'Other' Input
         function toggleOtherInput() {
             const otherInput = document.getElementById('otherInput');
             otherInput.classList.toggle('hidden');
         }
 
-        // Submit Report
         function submitReport() {
             const selectedReason = document.querySelector('input[name="reportReason"]:checked');
-            const otherText = document.getElementById('otherInput').value;
+            const otherText = document.getElementById('otherInput').value.trim();
 
             if (!selectedReason) {
                 alert('Please select a reason for reporting.');
@@ -455,68 +412,50 @@
 
             console.log(reportData); // Data yang akan dikirim ke backend
 
-            // Tutup modal setelah submit
             closeReportModal();
             alert('Your report has been submitted.');
         }
+
+        // Attach event listeners to all report buttons
+        document.getElementById('reportBtn1').addEventListener('click', openReportModal);
+        document.getElementById('reportBtn2').addEventListener('click', openReportModal);
+        document.getElementById('reportBtn3').addEventListener('click', openReportModal);
+
+        // Approve modal elements
+        const approveModal = document.getElementById('approveModal');
+        const closeApproveModalBtn = document.getElementById('closeApproveModal');
+        const cancelApproveBtn = document.getElementById('cancelApprove');
+        const confirmApproveBtn = document.getElementById('confirmApprove');
+
+        // Show approve modal on clicking any approve button
+        document.getElementById('approveBtn1').addEventListener('click', () => {
+            approveModal.classList.remove('hidden');
+        });
+        document.getElementById('approveBtn2').addEventListener('click', () => {
+            approveModal.classList.remove('hidden');
+        });
+        document.getElementById('approveBtn3').addEventListener('click', () => {
+            approveModal.classList.remove('hidden');
+        });
+
+        // Close approve modal handlers
+        closeApproveModalBtn.addEventListener('click', () => {
+            approveModal.classList.add('hidden');
+        });
+        cancelApproveBtn.addEventListener('click', () => {
+            approveModal.classList.add('hidden');
+        });
+
+        // Confirm approve action
+        confirmApproveBtn.addEventListener('click', () => {
+            approveModal.classList.add('hidden');
+            alert('Solution approved successfully.');
+            // Here you can add your logic to handle approval (e.g., API call)
+        });
     </script>
 
     <!-- Footer -->
-    <footer class="bg-[#00114F] text-white py-20 px-16">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-
-            <!-- Logo, Alamat & Media Sosial -->
-            <div>
-                <img src="{{ asset('storage/liturtarawhite.svg') }}" alt="Liturtara Logo" class="h-12">
-                <p class="text-sm mt-3">
-                    PT. Literasi Jaya Nusantara
-                </p>
-                <p class="text-sm mt-1">Email: info@liturtara.com</p>
-                <p class="text-sm mt-1">Phone: +62 812-3456-7890</p>
-
-                <!-- Media Sosial    -->
-                <div class="flex space-x-4 mt-6">
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-x"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-
-            <!-- Perusahaan -->
-            <div>
-                <h3 class="font-semibold text-lg mb-3">Company</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white">Home Page</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">News</a></li>
-                </ul>
-            </div>
-
-            <!-- Layanan -->
-            <div>
-                <h3 class="font-semibold text-lg mb-3">Service</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white">Case Owner</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Talent Researcher</a></li>
-                </ul>
-            </div>
-
-            <!-- Bantuan -->
-            <div>
-                <h3 class="font-semibold text-lg mb-3">Help</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="text-gray-300 hover:text-white">Contact Us</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">FAQ</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Terms and Condition</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="text-center text-gray-400 text-sm mt-12">
-            &copy; 2025 Liturtara. All Rights Reserved.
-        </div>
-    </footer>
+@include('bottom')
 </body>
 
 </html>
