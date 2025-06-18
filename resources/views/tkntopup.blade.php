@@ -59,6 +59,12 @@
             role="button">
             Purchase
         </a>
+        <a href="{{ route('redeemtkn') }}"
+            class="mt-12 border border-[#0B1446] text-[#0B1446] hover:bg-[#0B1446] hover:text-white rounded-md w-64 py-3 text-center text-sm md:text-base font-normal transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg inline-block"
+            role="button">
+            View More ->
+        </a>
+
 
     </div>
 

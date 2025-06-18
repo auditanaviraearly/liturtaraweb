@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseOwnerController;
+use App\Http\Controllers\TalentController;
 
 Route::get('/', function () {
     // return view('talent.accounttr.accounttr');
@@ -32,6 +33,10 @@ Route::match(['get', 'post'], '/collectdone', function () {
 Route::match(['get', 'post'], '/collsurveydone', function () {
     return view('collsurveydone');
 })->name('collsurveydone');
+
+Route::match(['get', 'post'], '/redeemtkn', function () {
+    return view('redeemtkn');
+})->name('redeemtkn');
 
 
 // **AUTH ROUTES (LOGIN & REGISTER)**
@@ -146,10 +151,29 @@ Route::get('/detailtr', function () {
     return view('talent.detailtr');
 })->name('detailtr');
 
+// Route::get('/detail', function () {
+//     return view('talent.detail');
+// })->name('detail');
+
 Route::get('/accounttr', function () {
     return view('talent.accounttr.accounttr');
 })->name('accounttr');
+Route::get('/cv', function () {
+    return view('talent.accounttr.cv');
+})->name('cv');
 
 Route::get('/problem', function () {
     return view('talent.problem');
 })->name('problem');
+
+Route::get('/drafttr', function () {
+    return view('talent.drafttr');
+})->name('drafttr');
+
+Route::get('/caselist', function () {
+    return view('talent.caselist');
+})->name('caselist');
+
+Route::get('/solutionstatus', function () {
+    return view('talent.solutionstatus');
+})->name('solutionstatus');
