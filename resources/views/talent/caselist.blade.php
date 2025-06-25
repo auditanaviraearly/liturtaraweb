@@ -24,7 +24,7 @@
     @include('navbartr')
 
     <!-- Hero Section -->
-    <div class="relative w-full h-80 bg-cover bg-center mt-10" style="background-image: url('/storage/gambar2.png');">
+    <div class="mt-20 relative w-full h-80 bg-cover bg-center mt-10" style="background-image: url('/storage/gambar2.png');">
         <div class="absolute inset-0 bg-black bg-opacity-30 flex items-end px-8 pb-6">
             <div class="text-white">
                 <h1 class="text-3xl font-bold">Layanan Talent Researcher</h1>

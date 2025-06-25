@@ -22,9 +22,9 @@
     @include('navbartr')
 
     <!-- Layout: Sidebar and Main Content -->
-    <div class="flex">
+    <div class="mt-20 flex">
         <!-- Sidebar -->
-        <aside class="w-64 bg-white shadow-md min-h-screen p-6">
+        <aside class=" w-64 bg-white shadow-md min-h-screen p-6">
             <nav class="space-y-4">
                 <a href="{{ route('accounttr') }}" class="block text-gray-700 hover:text-blue-700">Profile</a>
                 <a href="{{ route('cv') }}"
@@ -42,8 +42,8 @@
 
         <!-- Main content -->
         <main class="flex-1 p-8 max-w-5xl">
-            <h1 class="text-2xl font-bold">
-                Profile <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded ml-2">SMEs</span>
+            <h1 class="text-2xl font-bold"> Profile
+                <!-- Profile <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded ml-2">SMEs</span> -->
             </h1>
             <p class="text-lg text-gray-700 mt-1">Talent Researcher</p>
 

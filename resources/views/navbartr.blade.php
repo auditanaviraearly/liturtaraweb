@@ -1,5 +1,5 @@
     <!-- Navbar -->
-    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center relative">
+    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-">
         <!-- Logo -->
         <div class="flex items-center space-x-3">
             <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
@@ -13,15 +13,6 @@
             <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">News</a>
             <a href="#" class="text-gray-700 hover:text-blue-700 py-2 px-4">Our Contact</a>
         </div>
-
-        <!-- Account Button (Right Side) -->
-        <div class="flex items-center space-x-4">
-            <!-- Token Button -->
-            <a href="{{ route('tkntopup') }}">
-                <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
-                    00 Token
-                </button>
-            </a>
 
             <!-- Notifikasi Lonceng -->
             <a href="#" id="notifButton">
@@ -114,6 +105,15 @@
                     document.getElementById('notifOverlay').classList.add('hidden'); // Hide the overlay
                 });
             </script>
+
+            <!-- Account Button (Right Side) -->
+            <div class="flex items-center space-x-4">
+                <!-- Token Button -->
+                <a href="{{ route('tkntopup') }}">
+                    <button class="text-black-700 px-4 py-2 rounded-md hover:text-blue-700">
+                        00 Token
+                    </button>
+                </a>
 
             <!-- Point Button -->
             <a href="{{ route('accountco') }}">

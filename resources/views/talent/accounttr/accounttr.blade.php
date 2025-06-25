@@ -13,9 +13,10 @@
 
 <body class="bg-gray-100 flex flex-col min-h-screen">
 
+    <!-- NAVBAR -->
     @include('navbartr')
 
-    <div class="flex flex-1">
+    <div class="mt-20 flex">
         <!-- Sidebar -->
         <aside class="w-64 bg-white shadow-md min-h-screen p-6">
             <nav class="space-y-4">
@@ -25,20 +26,35 @@
                 <a href="#" class="block text-gray-700 hover:text-blue-700">Favorite</a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="block text-red-600 hover:text-red-800">
-                        Logout →
-                    </button>
+                    <button type="submit" class="block text-red-600 hover:text-red-800">Logout →</button>
                 </form>
             </nav>
         </aside>
 
-        <main class="flex-1 p-10" x-data="{ step: 1 }">
-            <h1 class="text-2xl font-bold">
-                Profile <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded ml-2">SMEs</span>
+        <!-- MAIN CONTENT -->
+        <main class="flex-1 p-10"
+            x-data="{
+                step: 1,
+                linkedin: '',
+                instagram: '',
+                showSuccess: false,
+                showError: false,
+                saveChanges() {
+                    if (this.linkedin.trim() !== '' && this.instagram.trim() !== '') {
+                        this.showSuccess = true;
+                        this.showError = false;
+                    } else {
+                        this.showError = true;
+                        this.showSuccess = false;
+                    }
+                }
+            }">
+            <h1 class="text-2xl font-bold"> Profile
+                <!-- Profile <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded ml-2"></span> -->
             </h1>
             <p class="text-lg text-gray-700 mt-1">Talent Researcher</p>
 
-            <!-- Step 1: Data Pribadi -->
+            <!-- Step 1 -->
             <div class="bg-white shadow-md rounded-lg p-6 mt-4" x-show="step === 1">
                 <div class="flex items-center space-x-4">
                     <div class="w-24 h-24 bg-gray-300 rounded-lg overflow-hidden">
@@ -63,34 +79,30 @@
                 </div>
 
                 <div class="mt-6 space-y-4">
-                    <!-- Full Name -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Full Name</label>
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="border px-4 py-2 rounded w-2/3" value="John Doe" readonly>
+                            <input type="text" class="border px-4 py-2 rounded w-2/3" placeholder="John Doe">
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
 
-                    <!-- Date of Birth -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Date of Birth</label>
                         <div class="flex items-center space-x-4">
-                            <input type="date" class="border px-4 py-2 rounded w-2/3" value="1999-10-10" readonly>
+                            <input type="date" class="border px-4 py-2 rounded w-2/3" placeholder="1999-10-10">
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
 
-                    <!-- Domicile -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Domicile</label>
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="border px-4 py-2 rounded w-2/3" value="Kota Bandung" readonly>
+                            <input type="text" class="border px-4 py-2 rounded w-2/3" placeholder="Kota Bandung">
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
 
-                    <!-- Gender -->
                     <div class="flex flex-col">
                         <label class="text-gray-700 mb-2">Gender</label>
                         <div class="flex space-x-4">
@@ -111,29 +123,26 @@
 
                     <hr class="space-x-4 space-y-4 my-4 border-gray-300">
 
-                    <!-- Phone Number -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Agency Name</label>
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="border px-4 py-2 rounded w-2/3" value="081234567890" readonly>
+                            <input type="text" class="border px-4 py-2 rounded w-2/3" placeholder="PT. ABCD">
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
 
-                    <!-- Email -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Last Education</label>
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="border px-4 py-2 rounded w-2/3" value="liturtara@gmail.com" readonly>
+                            <input type="text" class="border px-4 py-2 rounded w-2/3" placeholder="S1 Teknik Informatika">
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
 
-                    <!-- Password -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Achievements</label>
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="border px-4 py-2 rounded w-2/3" readonly>
+                            <input type="text" class="border px-4 py-2 rounded w-2/3" value="">
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
@@ -144,30 +153,25 @@
                 </div>
             </div>
 
-            <!-- Step 2: Social Media -->
+            <!-- Step 2 -->
             <div class="bg-white shadow-md rounded-lg p-6 mt-4" x-show="step === 2">
-                <!-- <h2 class="text-xl font-semibold mb-4">Social Media Links</h2> -->
-
                 <div class="space-y-4">
-                    <!-- Phone Number -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Phone Number</label>
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="border px-4 py-2 rounded w-2/3" value="081234567890" readonly>
+                            <input type="number" class="border px-4 py-2 rounded w-2/3" placeholder="081234567890">
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
 
-                    <!-- Email -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Email</label>
                         <div class="flex items-center space-x-4">
-                            <input type="text" class="border px-4 py-2 rounded w-2/3" value="liturtara@gmail.com" readonly>
+                            <input type="text" class="border px-4 py-2 rounded w-2/3" placeholder="liturtara@gmail.com" readonly>
                             <button class="border border-blue-700 text-blue-700 px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white">Edit</button>
                         </div>
                     </div>
 
-                    <!-- Password -->
                     <div class="flex flex-col">
                         <label class="text-gray-700">Password</label>
                         <div class="flex items-center space-x-4">
@@ -181,23 +185,31 @@
 
                 <div class="flex flex-col">
                     <label class="text-gray-700">LinkedIn</label>
-                    <input type="text" class="border px-4 py-2 rounded w-full" placeholder="https://linkedin.com/in/username">
+                    <input type="text" x-model="linkedin" class="border px-4 py-2 rounded w-full" placeholder="https://linkedin.com/in/username">
                 </div>
-                <div class="flex flex-col">
+
+                <div class="flex flex-col mt-4">
                     <label class="text-gray-700">Instagram</label>
-                    <input type="text" class="border px-4 py-2 rounded w-full" placeholder="https://instagram.com/username">
+                    <input type="text" x-model="instagram" class="border px-4 py-2 rounded w-full" placeholder="https://instagram.com/username">
                 </div>
-                <div class="flex justify-between mt-6">
+
+                <div class="flex justify-center mt-6 space-x-4">
                     <button @click="step = 1" class="bg-gray-300 text-gray-700 px-6 py-2 rounded-md hover:bg-gray-400">Back</button>
-                    <button class="bg-blue-900 text-white px-6 py-2 rounded-md hover:bg-blue-800">Save Changes</button>
+                    <button @click="saveChanges" class="bg-blue-900 text-white px-6 py-2 rounded-md hover:bg-blue-800">Save Changes</button>
+                </div>
+
+                <!-- Notifikasi -->
+                <div x-show="showSuccess" x-transition class="mt-4 text-green-600 font-semibold text-center">
+                    Changes saved successfully!
+                </div>
+                <div x-show="showError" x-transition class="mt-4 text-red-600 font-semibold text-center">
+                    Please fill in all columns.
                 </div>
             </div>
-
-
-    </div>
-    </main>
+        </main>
     </div>
 
+    <!-- FOOTER -->
     @include('bottom')
 
 </body>

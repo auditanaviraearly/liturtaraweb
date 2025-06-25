@@ -25,7 +25,7 @@
 <body class="bg-gray-100 min-h-screen flex flex-col">
     @include('navbartr')
     <!-- Hero Section -->
-    <div class="relative w-full h-80 mt-10">
+    <div class="mt-20 relative w-full h-80 mt-10">
         <img src="{{ asset('storage/gambar2.png') }}"
             alt="Gambar 2"
             class="w-full h-full object-cover"
