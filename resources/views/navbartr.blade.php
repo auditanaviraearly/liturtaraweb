@@ -1,5 +1,5 @@
     <!-- Navbar -->
-    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-">
+    <nav class="bg-white shadow-md py-4 px-6 flex justify-between items-center fixed top-0 left-0 w-full z-50">
         <!-- Logo -->
         <div class="flex items-center space-x-3">
             <img src="{{ asset('storage/liturtaralogo.svg') }}" alt="Liturtara Logo" class="h-8">
